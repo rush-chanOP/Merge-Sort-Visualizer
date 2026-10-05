@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merge Sort Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="intro">
+    <h1>Merge Sort</h1>
+    <p>Split the array down to single elements, then merge the pieces back together in order. Step through it by hand, or let it play.</p>
+  </div>
+  <div class="entry">
+    <label for="arrayInput">Array</label>
+    <div class="entry-row">
+      <input id="arrayInput" type="text" value="38, 27, 43, 3, 9, 82, 10" autocomplete="off" spellcheck="false">
+      <button id="startBtn" class="btn primary">Generate</button>
+    </div>
+    <div class="entry-row small-row">
+      <button id="exampleBtn" class="btn ghost">Example</button>
+      <button id="randomBtn" class="btn ghost">Random</button>
+      <span id="error" class="error" role="alert"></span>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="board" aria-label="Visualization">
+    <div class="board-top">
+      <span id="stageBadge" class="badge">READY</span>
+      <span id="vs" class="vs"></span>
+      <span id="stepCount" class="count">Step 1 / 1</span>
+    </div>
+    <div id="stageWrap"><div id="stage"></div></div>
+    <div id="complete" class="complete">Sorting Complete</div>
+    <div class="transport">
+      <button id="prevBtn" class="btn ghost">&larr; Previous</button>
+      <button id="playBtn" class="btn primary">&#9654; Play</button>
+      <button id="nextBtn" class="btn ghost">Next &rarr;</button>
+      <button id="restartBtn" class="btn ghost">&#8635; Restart</button>
+      <label class="speed">Speed <input id="speed" type="range" min="1" max="5" value="3"></label>
+    </div>
+  </section>
+
+  <aside class="side">
+    <section class="note">
+      <svg id="mascot" class="mascot" viewBox="0 0 64 74" data-mood="READY" aria-hidden="true">
+        <rect x="18" y="52" width="9" height="18" rx="3" fill="#bdb08f"/><rect x="37" y="52" width="9" height="18" rx="3" fill="#bdb08f"/>
+        <rect x="8" y="10" width="48" height="48" rx="8" fill="#bdb08f"/><rect x="8" y="6" width="48" height="48" rx="8" fill="#f0e8d4"/>
+        <g class="eyes"><circle class="eye" cx="23" cy="26" r="5"/><circle class="eye" cx="41" cy="26" r="5"/></g>
+        <path class="happy" d="M17 28q6-9 12 0M35 28q6-9 12 0"/>
+        <g class="cheeks"><circle cx="14" cy="37" r="3.5"/><circle cx="50" cy="37" r="3.5"/></g>
+        <path class="m-smile" d="M25 38q7 7 14 0"/><ellipse class="m-o" cx="32" cy="40" rx="4" ry="5"/>
+        <path class="m-flat" d="M26 41h12"/><path class="m-big" d="M24 36q8 12 16 0z"/>
+      </svg>
+      <div class="bubble">
+        <h2>What's happening?</h2>
+        <p id="explainText">Press Generate to begin.</p>
+      </div>
+    </section>
+    <section class="treebox">
+      <h2>Recursion tree</h2>
+      <div id="treeWrap"><div id="tree"></div></div>
+      <p class="legend"><i class="k active"></i>working on <i class="k done"></i>sorted</p>
+    </section>
+  </aside>
+</main>
+
+<section class="why">
+  <h2>Why it is O(n log n)</h2>
+  <table class="cx">
+    <tr><th>Best case</th><td>O(n log n)</td></tr>
+    <tr><th>Average case</th><td>O(n log n)</td></tr>
+    <tr><th>Worst case</th><td>O(n log n)</td></tr>
+    <tr><th>Space</th><td>O(n)</td></tr>
+  </table>
+  <p>Each split halves the array, so a list of n elements can only be split about log&#8322; n times before every piece is a single element. That gives log n levels. At each level the merges together look at every element once, which is n units of work. Levels times work per level is n &times; log n.</p>
+  <p>Merge Sort never looks at how ordered the input already is, which is why the best, average and worst cases match. The cost is memory: merging two portions needs a temporary array, so extra space grows with n.</p>
+</section>
+<script src="script.js"></script>
+</body>
+</html>
